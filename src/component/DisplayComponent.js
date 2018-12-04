@@ -1,15 +1,22 @@
 import React from 'react';
-import nameHoC from '../hoc/NameHoc';
-import messageHoc from '../hoc/MessageHoc';
+import Name from './NameComponent';
+import Message from './MessageComponent';
 class Display extends React.Component {
-        render() {
-        const { name, message } = this.props;
-        return(
+    render() {
+        return (
             <div>
-                <h1>Hello {name}! {message}</h1>
+                <Name render=
+                    {nameData => (
+                        <Message render=
+                            {messageData => (
+                                <h1>Hi {nameData.data}! {messageData.data}</h1>
+                            )}
+                        />
+                    )}
+                />
             </div>
         )
     }
 }
 
-export default messageHoc(nameHoC(Display));
+export default Display;
